@@ -1,6 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Transaction, TransactionState } from './models/transaction';
 import { TransactionsService } from './transactions.service';
+import { UpdateTransactionInput } from './dto/update-transaction.input';
 
 @Resolver(of => Transaction)
 export class TransactionsResolver {
@@ -12,10 +13,9 @@ export class TransactionsResolver {
   }
 
   @Mutation(returns => Transaction)
-  approveSuspiciousTransaction(@Args('id') id: string): Transaction {
-    return this.transactionsService.updateSuspiciousTransactionState(
-      id,
-      TransactionState.Approved,
-    );
+  updateSuspiciousTransaction(
+    @Args('input') input: UpdateTransactionInput,
+  ): Transaction {
+    return this.transactionsService.updateSuspiciousTransactionState(input.id, input.state);
   }
 }

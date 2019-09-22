@@ -4,7 +4,7 @@
 # -----------------------------------------------
 
 type Mutation {
-  approveSuspiciousTransaction(id: String!): Transaction!
+  updateSuspiciousTransaction(input: UpdateTransactionInput!): Transaction!
 }
 
 type Query {
@@ -23,4 +23,9 @@ enum TransactionState {
   Suspicious
   Approved
   Declined
+}
+
+input UpdateTransactionInput {
+  id: ID!
+  state: TransactionState!
 }

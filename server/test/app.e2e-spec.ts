@@ -50,7 +50,7 @@ describe('Suspicious Transactions (e2e)', () => {
         operationName: null,
         variables: {},
         query: `mutation {
-          approveSuspiciousTransaction(id: "1") {
+          updateSuspiciousTransaction(input: {id: "1", state: Approved}) {
             id
           }
         }`,
@@ -58,7 +58,7 @@ describe('Suspicious Transactions (e2e)', () => {
       .expect(200)
       .expect({
         data: {
-          approveSuspiciousTransaction: transactionsService.updateSuspiciousTransactionState(),
+          updateSuspiciousTransaction: transactionsService.updateSuspiciousTransactionState(),
         },
       })
       .then(() =>
