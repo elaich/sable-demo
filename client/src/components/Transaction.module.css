@@ -1,0 +1,19 @@
+.transaction {
+  border: 1px solid gray;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.transaction > div {
+  padding: 10px;
+}
+
+.transaction-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.transaction-buttons > button {
+  margin-right: 10px;
+  padding: 8px 16px;
+}

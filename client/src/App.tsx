@@ -1,8 +1,9 @@
 import React from 'react';
+import { SuspiciousTransactions } from './components/SuspiciousTransactions';
 
 const App: React.FC = () => {
   return (
-    <h1>Welcome Marouane!</h1>
+    <SuspiciousTransactions />
   );
 }
 

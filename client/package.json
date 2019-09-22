@@ -7,7 +7,10 @@
     "@types/node": "12.7.5",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "apollo-boost": "^0.4.4",
+    "graphql": "^14.5.7",
     "react": "^16.9.0",
+    "react-apollo": "^3.1.1",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.2",
     "typescript": "3.6.3"
@@ -21,12 +24,9 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:3001",
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
