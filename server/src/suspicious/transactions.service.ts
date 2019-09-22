@@ -10,6 +10,7 @@ export class TransactionsService {
       to: 'h4n2',
       amount: 309,
       state: TransactionState.Suspicious,
+      createdAt: new Date('2019-08-06'),
     },
     {
       id: '2',
@@ -17,6 +18,7 @@ export class TransactionsService {
       to: 'ys3m',
       state: TransactionState.Suspicious,
       amount: 30,
+      createdAt: new Date('2019-06-06'),
     },
     {
       id: '3',
@@ -24,6 +26,7 @@ export class TransactionsService {
       to: 'hd63',
       state: TransactionState.Suspicious,
       amount: 139,
+      createdAt: new Date('2019-12-06'),
     },
     {
       id: '4',
@@ -31,6 +34,7 @@ export class TransactionsService {
       to: '6dk3',
       state: TransactionState.Suspicious,
       amount: 200,
+      createdAt: new Date('2019-11-06'),
     },
     {
       id: '5',
@@ -38,13 +42,22 @@ export class TransactionsService {
       to: 'lk82',
       state: TransactionState.Suspicious,
       amount: 90,
+      createdAt: new Date('2019-10-06'),
     },
   ];
 
   findSuspicious(): Transaction[] {
     return this.transactions.filter(
       transaction => transaction.state === TransactionState.Suspicious,
-    );
+    ).sort((a, b) => {
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      return 0;
+    });
   }
 
   updateSuspiciousTransactionState(

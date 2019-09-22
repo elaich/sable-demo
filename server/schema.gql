@@ -3,6 +3,11 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
 type Mutation {
   updateSuspiciousTransaction(input: UpdateTransactionInput!): Transaction!
 }
@@ -17,6 +22,7 @@ type Transaction {
   to: ID!
   amount: Int!
   state: TransactionState!
+  createdAt: DateTime!
 }
 
 enum TransactionState {

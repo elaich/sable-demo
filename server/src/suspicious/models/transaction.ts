@@ -27,4 +27,7 @@ export class Transaction {
 
   @Field(type => TransactionState)
   state: TransactionState;
+
+  @Field(type => Date)
+  createdAt: Date;
 }
