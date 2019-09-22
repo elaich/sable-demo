@@ -9,4 +9,14 @@ type Query {
 
 type Transaction {
   id: ID!
+  from: ID!
+  to: ID!
+  amount: Int!
+  state: TransactionState!
+}
+
+enum TransactionState {
+  Suspicious
+  Approved
+  Declined
 }
