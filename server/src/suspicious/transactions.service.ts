@@ -3,8 +3,7 @@ import { Transaction, TransactionState } from './models/transaction';
 
 @Injectable()
 export class TransactionsService {
-
-  private readonly transactions: Transaction[] = [
+  private transactions: Transaction[] = [
     {
       id: '1',
       from: 'a3ad',
@@ -17,32 +16,44 @@ export class TransactionsService {
       from: 'h7s9',
       to: 'ys3m',
       state: TransactionState.Suspicious,
-      amount: 30
+      amount: 30,
     },
     {
       id: '3',
       from: 'ju87',
       to: 'hd63',
       state: TransactionState.Suspicious,
-      amount: 139
+      amount: 139,
     },
     {
       id: '4',
       from: 'hod2',
       to: '6dk3',
       state: TransactionState.Suspicious,
-      amount: 200
+      amount: 200,
     },
     {
       id: '5',
       from: '8dk2',
       to: 'lk82',
       state: TransactionState.Suspicious,
-      amount: 90
+      amount: 90,
     },
-  ]
+  ];
 
   findSuspicious(): Transaction[] {
-    return this.transactions;
+    return this.transactions.filter(
+      transaction => transaction.state === TransactionState.Suspicious,
+    );
+  }
+
+  updateSuspiciousTransactionState(
+    id: string,
+    state: TransactionState,
+  ): Transaction {
+    this.transactions = this.transactions.map(transaction =>
+      transaction.id === id ? { ...transaction, state } : transaction,
+    );
+    return this.transactions.find(transaction => transaction.id === id);
   }
 }

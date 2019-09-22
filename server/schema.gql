@@ -3,6 +3,10 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Mutation {
+  approveSuspiciousTransaction(id: String!): Transaction!
+}
+
 type Query {
   getSuspiciousTransactions: [Transaction!]!
 }
