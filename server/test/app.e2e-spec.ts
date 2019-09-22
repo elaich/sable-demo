@@ -16,7 +16,7 @@ describe('Suspicious Transactions (e2e)', () => {
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
-      .post('/')
+      .post('/graphql')
       .send({
         operationName: null,
         variables: {},
