@@ -61,19 +61,23 @@ export class TransactionsService {
   }
 
   blockFrom(transactions: Transaction[], id: string): Transaction[] {
-    const filtered = transactions.filter((transaction: Transaction) => transaction.state !== TransactionState.Suspicious);
+    console.log("Block from: ", id);
+    const children = [];
 
-    for (let i = 0; i < filtered.length; i++) {
-      if (filtered[i].from === id) {
-        filtered[i].state = TransactionState.Suspicious;
-        return this.blockFrom(filtered, transactions[i].to);
+    for (let i = 0; i < transactions.length; i++) {
+      if (transactions[i].from === id && transactions[i].state !== TransactionState.Suspicious) {
+        transactions[i].state = TransactionState.Suspicious;
+        children.push(transactions[i].to);
       }
     }
-    
-    return filtered;
-  }
 
-  blockSuspicious(): void {
+    children.forEach(child => {
+      // Block only if there is a non suspicious transaction from a child.
+      if (transactions.filter(t => t.from === child && t.state !== TransactionState.Suspicious).length > 0)
+        this.blockFrom(transactions, child)
+    });
+
+    return transactions;
   }
 
   updateSuspiciousTransactionState(

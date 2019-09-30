@@ -32,6 +32,7 @@ describe('Transaction Service', () => {
           createdAt: new Date(),
           "state": TransactionState.None
         },
+        // Suspicious
         {
           "id": "4",
           "from": "A",
@@ -40,6 +41,7 @@ describe('Transaction Service', () => {
           createdAt: new Date(),
           "state": TransactionState.None
         },
+        // Suspicious
         {
           "id": "5",
           "from": "E",
@@ -49,6 +51,7 @@ describe('Transaction Service', () => {
 
           "state": TransactionState.None
         },
+        // Suspicious
         {
           "id": "6",
           "from": "G",
@@ -58,6 +61,7 @@ describe('Transaction Service', () => {
 
           "state": TransactionState.None
         },
+        // Suspicious
         {
           "id": "7",
           "from": "G",
@@ -67,6 +71,7 @@ describe('Transaction Service', () => {
 
           "state": TransactionState.None
         },
+        // Suspicious
         {
           "id": "8",
           "from": "A",
@@ -120,6 +125,6 @@ describe('Transaction Service', () => {
 
     
         const result = transactionService.blockFrom(transactions, "B");
-        expect(result.length).toEqual(7);
+        expect(result.filter(t => t.state === TransactionState.Suspicious).length).toEqual(10);
     })
 })
