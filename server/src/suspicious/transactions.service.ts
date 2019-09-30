@@ -60,6 +60,22 @@ export class TransactionsService {
     });
   }
 
+  blockFrom(transactions: Transaction[], id: string): Transaction[] {
+    const filtered = transactions.filter((transaction: Transaction) => transaction.state !== TransactionState.Suspicious);
+
+    for (let i = 0; i < filtered.length; i++) {
+      if (filtered[i].from === id) {
+        filtered[i].state = TransactionState.Suspicious;
+        return this.blockFrom(filtered, transactions[i].to);
+      }
+    }
+    
+    return filtered;
+  }
+
+  blockSuspicious(): void {
+  }
+
   updateSuspiciousTransactionState(
     id: string,
     state: TransactionState,

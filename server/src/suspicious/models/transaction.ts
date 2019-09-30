@@ -2,6 +2,7 @@ import { Field, ID, Int, ObjectType, registerEnumType } from 'type-graphql';
 
 export enum TransactionState {
   Suspicious,
+  None,
   Approved,
   Declined
 }
